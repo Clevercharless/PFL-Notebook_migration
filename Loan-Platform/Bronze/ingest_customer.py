@@ -36,7 +36,7 @@ blob_service_client = BlobServiceClient(
 # COMMAND ----------
 
 RAW_MOUNT_POINT = "/mnt/raw/customers"
-RAW_SOURCE = "abfss://raw@loanplatformdl.dfs.core.windows.net/customers"
+RAW_SOURCE = "s3://loanplatformdl-raw/customers"
 
 if not any(m.mountPoint == RAW_MOUNT_POINT for m in dbutils.fs.mounts()):
     dbutils.fs.mount(
@@ -64,7 +64,7 @@ log_event("ingest_customer", f"Read {customer_raw_df.count()} raw customer rows 
 
 # COMMAND ----------
 
-BRONZE_PATH = "abfss://bronze@loanplatformdl.dfs.core.windows.net/customers"
+BRONZE_PATH = "s3://loanplatformdl-bronze/customers"
 
 (
     customer_raw_df

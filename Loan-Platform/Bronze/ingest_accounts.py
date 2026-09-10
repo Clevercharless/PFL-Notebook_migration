@@ -30,7 +30,7 @@ blob_service_client = BlobServiceClient(
     credential=storage_account_key,
 )
 
-ACCOUNTS_BLOB_PATH = f"abfss://raw@{storage_account_name}.dfs.core.windows.net/accounts/{run_date}"
+ACCOUNTS_BLOB_PATH = f"s3://raw/accounts/{run_date}"
 
 # COMMAND ----------
 
@@ -44,7 +44,7 @@ log_event("ingest_accounts", f"Read {accounts_raw_df.count()} raw account event 
 
 # COMMAND ----------
 
-BRONZE_PATH = f"abfss://bronze@{storage_account_name}.dfs.core.windows.net/accounts"
+BRONZE_PATH = f"s3://{bucket_name}/accounts"
 
 (
     accounts_raw_df
